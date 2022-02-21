@@ -1,0 +1,96 @@
+.header {
+    display: grid;
+    grid-template-columns: repeat(2, max-content) 1fr;
+    grid-area: header;
+    align-items: center;
+    grid-gap: 50px;
+    padding: 0 45px;
+    background: $secondary-color;
+    @include lg {
+        padding: 0 25px;
+    }
+    @include md {
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 0;
+    }
+    @include sm {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-areas:
+      "h-title  profile"
+      "form    profile";
+    }
+
+    &__title {
+        margin-right: 5px;
+        font-weight: bold;
+        font-size: $lg-text;
+        line-height: 36px;
+        color: $dark-color;
+        @include sm {
+            grid-area: h-title;
+            font-size: $md-text;
+        }
+    }
+
+    &__search-form {
+        @include flex(space-between, center);
+        grid-gap: 10px;
+        @include sm {
+            grid-area: form;
+        }
+    }
+
+    &__form {
+        width: 163px;
+        height: 32px;
+        font-size: 1.5rem;
+        border-radius: 5px;
+        border: 1px solid;
+        @include sm {
+            width: 120px;
+            height: 25px;
+        }
+    }
+
+    &__notifications-btn {
+        border: none;
+        outline: none;
+        background: $secondary-color;
+    }
+
+    &__profile {
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        align-items: center;
+        justify-self: end;
+        margin-left: 5px;
+        @include sm {
+            grid-area: profile;
+        }
+    }
+
+    &__user-name {
+        margin-right: 20px;
+        font-weight: 600;
+        font-size: $md-text;
+        line-height: 24px;
+        color: $dark-color;
+        @include sm {
+            font-size: 1.5rem;
+        }
+    }
+
+    &__avatar {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    &__dropdown-btn {
+        border: none;
+        outline: none;
+        background: $secondary-color;
+    }
+}

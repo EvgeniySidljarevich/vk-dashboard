@@ -1,0 +1,36 @@
+html {
+    font-size: 10px;
+}
+
+body {
+    background: $primary-color;
+    font-family: 'Assistant', sans-serif;
+    background: url(../assets/icons/background-large.svg) 0 0/ 80% no-repeat, url(../assets/icons/background-small.svg) right bottom/ 29% no-repeat;
+}
+
+.app {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-areas: "nav header"
+                        "nav main";
+    grid-template-rows: 115px 1fr;
+
+    max-width: 1280px;
+    min-height: 880px;
+    margin: 50px auto;
+    border: 2px solid $secondary-color;
+    border-radius: $rounded;
+    overflow: hidden;
+
+    @include lg {
+        grid-template-columns: 70px 1fr;
+    }
+
+    @include md {
+        grid-template-columns: 1fr;
+        grid-template-areas: "nav"
+                             "header"
+                             "main";
+        grid-template-rows: 70px 90px 1fr;
+    }
+}

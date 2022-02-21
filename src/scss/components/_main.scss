@@ -1,0 +1,362 @@
+.main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 150px 1fr 1fr;
+  grid-template-areas:
+    "cards cards cards"
+    "line line diagram"
+    "hist hist progress";
+  grid-area: main;
+  grid-gap: 35px;
+  padding: 5px 45px 45px 45px;
+  background: $secondary-color;
+  @include xl {
+    grid-gap: 25px;
+  }
+  @include lg {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 150px repeat(3, 1fr);
+    grid-template-areas:
+      "cards cards"
+      "line line"
+      "diagram progress"
+      "hist hist";
+    grid-gap: 20px;
+    padding: 5px 25px 25px 25px;
+  }
+  @include md {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr repeat(4, 0.6fr);
+    grid-template-areas:
+      "cards"
+      "line"
+      "diagram"
+      "progress"
+      "hist";
+  }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-area: cards;
+  grid-gap: 35px;
+  @include lg {
+    grid-gap: 15px;
+  }
+  @include md {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+
+.card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column: span 1;
+  padding: 20px;
+  border-radius: $rounded;
+  background: $primary-color;
+
+  &__menu {
+    justify-self: end;
+    align-self: flex-start;
+    outline: none;
+    border: none;
+    background: inherit;
+  }
+
+  &__people {
+    justify-self: start;
+    align-self: flex-end;
+    font-weight: 500;
+    font-size: $md-text;
+    line-height: 24px;
+    color: $dark-color;
+    @include lg {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__statistics {
+    display: flex;
+    align-items: center;
+    justify-self: end;
+    align-self: end;
+    font-weight: 500;
+    font-size: $md-text;
+    line-height: 24px;
+    color: $light-color;
+    @include lg {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__arrow {
+    display: block;
+    width: 0.9em;
+    height: 0.9em;
+    margin-left: 5px;
+  }
+
+  &__arrow--up {
+    background: url(../assets/icons/arrow__up.svg)
+    center/contain no-repeat;
+  }
+
+  &__arrow--down {
+    background: url(../assets/icons/arrow__down.svg)
+    center/contain no-repeat;
+  }
+}
+
+.line-chart {
+  display: grid;
+  grid-template-rows: 70px 1fr;
+  grid-area: line;
+  padding: 25px;
+  border-radius: $rounded;
+  background: $primary-color;
+
+  &__header {
+    display: grid;
+    grid-template-columns: 1fr 2fr max-content;
+    @include sm {
+      grid-template-columns: 1fr max-content;
+      grid-template-rows: 1fr 1fr;
+    }
+  }
+
+  &__date {
+    justify-self: flex-end;
+    margin-right: 30px;
+    font-weight: 500;
+    font-size: $xs-text;
+    line-height: 14px;
+    color: $dark-color;
+    @include sm {
+      grid-column: 1/3;
+      grid-row: 2/3;
+      justify-self: center;
+    }
+  }
+
+  &__checkbox {
+    justify-self: flex-end;
+  }
+
+  &__checkbox-input {
+    vertical-align: middle;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #7f7fd5;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  &__checkbox-input:checked {
+    background: url(../assets/icons/point-purple.svg)
+    center/contain;
+  }
+
+  &__checkbox-input--another {
+    border: 2px solid #e786d7;
+  }
+
+  &__checkbox-input--another:checked {
+    background: url(../assets/icons/point-pink.svg)
+    center/contain;
+  }
+
+  &__checkbox-label {
+    vertical-align: middle;
+    font-weight: 600;
+    font-size: $xs-text;
+    line-height: 14px;
+    color: $dark-color;
+  }
+
+  &__chart {
+    @include sm {
+      height: 160px;
+      overflow: auto;
+    }
+  }
+
+  &__chart-img {
+   width: 100%;
+   @include sm {
+    min-width: 640px;
+    min-height: 124px;
+  }
+  }
+}
+
+.diagram {
+  display: grid;
+  grid-template-rows: 70px 1fr;
+  grid-template-columns: 60% 40%;
+  grid-area: diagram;
+  padding: 25px;
+  border-radius: $rounded;
+  background: $primary-color;
+
+  &__title {
+    grid-column: 1/3;
+  }
+
+  &__chart {
+    width: 100%;
+    @include md {
+      width: auto;
+    }
+  }
+
+  &__legend {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 20px;
+  }
+}
+
+.histogram {
+  display: grid;
+  grid-template-rows: 70px 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-area: hist;
+  padding: 25px;
+  border-radius: $rounded;
+  background: $primary-color;
+
+  &__legend {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    justify-content: end;
+    align-items: flex-start;
+    grid-gap: 20px;
+  }
+
+  &__chart {
+    grid-column: 1/3;
+    @include sm {
+      height: 160px;
+      overflow: auto;
+    }
+  }
+
+  &__chart-img {
+    @include sm {
+      min-width: 631px;
+      height: 137px;
+    }
+  }
+}
+
+.progress-chart {
+  display: grid;
+  grid-template-rows: 70px repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
+  grid-area: progress;
+  grid-column-gap: 10px;
+  padding: 25px;
+  border-radius: $rounded;
+  background: $primary-color;
+  @include md {
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  &__subtitle {
+    justify-self: flex-end;
+    font-weight: 600;
+    font-size: $xs-text;
+    line-height: 14px;
+    color: $dark-color;
+  }
+
+  &__subtitle-medium {
+    margin-left: 10px;
+    font-weight: 500;
+    color: $light-color;
+  }
+}
+
+.title {
+  font-weight: bold;
+  font-size: $md-text;
+  line-height: 2.4rem;
+  color: $dark-color;
+  @include lg {
+    font-size: 2rem;
+  }
+  @include sm {
+    font-size: 1.6rem;
+  }
+}
+
+.date {
+  border: none;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: $xs-text;
+  line-height: 14px;
+  color: #4f4f4f;
+
+  &__color {
+    display: block;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background: #7f7fd5;
+  }
+
+  &__color--light {
+    background: #e786d7;
+  }
+}
+
+.progress {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+
+  &__name {
+    align-self: flex-start;
+    font-weight: 500;
+    font-size: $xs-text;
+    line-height: 14px;
+    color: $dark-color;
+  }
+
+  &__value {
+    justify-self: flex-end;
+    align-self: flex-start;
+    font-weight: 500;
+    font-size: $xs-text;
+    line-height: 14px;
+    color: $light-color;
+  }
+
+  &__skale {
+    grid-column: 1/3;
+    width: 100%;
+    height: 10px;
+    background: $secondary-color;
+    border-radius: 9px;
+    overflow: hidden;
+  }
+
+  &__fill {
+    width: 20%;
+    height: 100%;
+    border-radius: 9px;
+    background: #7f7fd5;
+  }
+}

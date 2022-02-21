@@ -1,0 +1,56 @@
+.nav {
+    display: grid;
+    grid-template-rows: 1fr repeat(7, 40px) 1fr;
+    grid-area: nav;
+    justify-content: center;
+    grid-gap: 20px;
+    padding: 45px 0;
+    background: $primary-color;
+
+    @include md {
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr repeat(7, 20px) 1fr;
+        align-items: center;
+        padding: 0 25px;
+    }
+    @include sm {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    &__logo {
+        object-fit: cover;
+    }
+
+    &__link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include sm {
+            display: none;
+        }
+    }
+
+    &__toggle-theme {
+        align-self: end;
+        @include md {
+            justify-self: end;
+            align-self: center;
+        }
+        @include sm {
+            display: none;
+        }
+    }
+
+    &__menu-btn {
+        display: none;
+        justify-self: end;
+        width: 35px;
+        height: 35px;
+        border: none;
+        outline: none;
+        background: inherit;
+        @include sm {
+            display: block;
+        }
+    }
+}
